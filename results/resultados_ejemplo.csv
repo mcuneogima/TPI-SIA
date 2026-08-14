@@ -1,0 +1,10 @@
+level,algorithm,heuristic,success,cost,nodes_expanded,nodes_frontier,time_ms,memory_mb,solution,solution_length
+level01,bfs,,true,3,8,11,0.205,0.008,RIGHT UP LEFT,3
+level01,dfs,,true,3,73,2,0.925,0.015,RIGHT UP LEFT,3
+level01,greedy,manhattan,true,3,4,6,0.367,0.021,RIGHT UP LEFT,3
+level01,astar,manhattan,true,3,8,8,0.623,0.033,RIGHT UP LEFT,3
+level01,astar,paredes_bfs,true,3,7,6,0.48,0.027,RIGHT UP LEFT,3
+level01,iddfs,,true,3,12,0,0.243,0.007,RIGHT UP LEFT,3
+level02,astar,paredes_bfs,true,5,15,9,1.38,0.049,UP UP LEFT DOWN LEFT,5
+level01,astar,manhattan,true,3,8,8,0.554,0.033,RIGHT UP LEFT,3
+level01,astar,manhattan,true,3,8,8,0.589,0.019,RIGHT UP LEFT,3
