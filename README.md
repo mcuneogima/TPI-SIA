@@ -1,11 +1,15 @@
-# Sokoban — Etapa 1
+# Sokoban
 
 Motor de búsqueda de Sokoban implementado en Python sin librerías que resuelvan el problema.
 
 ## Requisitos
 
 - Python 3.10+.
-- No requiere dependencias externas.
+- pandas >= 2.0
+- numpy >= 1.24
+- matplotlib >= 3.7
+
+(correr pip install -r requirements.txt para bajar dependencias)
 
 ## Estructura
 
@@ -17,7 +21,9 @@ src/
   heuristicas/           Manhattan y distancias de empuje con BFS
   ejecutores/            CLI simple y ejecución múltiple
   resultados/            estructuras de resultados
+  analizadores/          generadores de graficos y csv's
 results/                 CSV generado por las ejecuciones
+analysis/                carpeta destino de graficos
 ```
 
 ## Formato de nivel
@@ -74,6 +80,11 @@ Para algoritmos sin heurística:
 python -m src.ejecutores.ejecutor_multiple levels/level01.txt bfs - 10
 ```
 
+Para probar todos los algoritmos N veces para niveles 1-3:
+```bash
+python ejecutar_experimentos.py --runs 10
+```
+
 ## Métricas
 
 Cada ejecución registra:
@@ -91,6 +102,11 @@ Cada ejecución registra:
 - solución como secuencia de acciones
 
 El costo es el número de movimientos del jugador. Caminar y empujar cuentan como un movimiento.
+
+Para generar graficos con la información en results correr:
+```bash
+python -m src.analizadores.analizar results/resultados.csv -o analysis
+```
 
 ## Heurísticas
 
