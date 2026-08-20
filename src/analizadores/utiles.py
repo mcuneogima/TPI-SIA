@@ -29,10 +29,27 @@ def graficar_barras_agrupadas(
     *,
     rotacion: int = 0,
     porcentaje: bool = False,
+    errores: pd.DataFrame | None = None,
 ) -> None:
-    """Grafica una tabla index x columnas como barras agrupadas."""
+    """Grafica una tabla index x columnas como barras agrupadas.
+
+    Si se proporciona ``errores``, debe tener los mismos índices y columnas
+    que ``tabla``. Se utiliza como barra de error para cada media.
+    """
     fig, ax = plt.subplots(figsize=(11, 6))
-    tabla.plot(kind="bar", ax=ax)
+
+    plot_kwargs = {}
+    if errores is not None:
+        # Las barras sin suficientes observaciones tienen desviación estándar
+        # NaN. Para el gráfico se muestran sin barra de error.
+        errores_alineados = errores.reindex(
+            index=tabla.index,
+            columns=tabla.columns,
+        ).fillna(0)
+        plot_kwargs["yerr"] = errores_alineados
+        plot_kwargs["capsize"] = 4
+
+    tabla.plot(kind="bar", ax=ax, **plot_kwargs)
     ax.set_title(titulo)
     ax.set_xlabel(eje_x)
     ax.set_ylabel(eje_y)
